@@ -1,3 +1,4 @@
+const h2 = document.querySelector("h2");
 const input = document.querySelector("input");
 const button = document.querySelector("button");
 
@@ -6,6 +7,7 @@ const degrees = document.querySelector("#degrees");
 const img = document.querySelector("img");
 const wind = document.querySelector("#wind");
 const content = document.querySelector(".content");
+
 
 button.addEventListener("click", () => {
   if (!input.value) return;
@@ -32,6 +34,33 @@ async function getDataApi() {
     alert(error);
   }
 }
+
+
+const relogio = setInterval(function (time) {
+  const date = new Date();
+
+  let hora = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
+
+  if (hora < 10) {
+    hora = '0' + hora;
+  };
+
+  if (min < 10) {
+    min = '0' + min;
+  };
+
+  if (sec < 10) {
+    sec = '0' + sec;
+  };
+
+  var str_hora = hora + ':' + min + ':' + sec;
+
+  console.log(str_hora);
+
+  h2.innerHTML = `${str_hora}`;
+})
 
 function loadData(data) {
   place.innerHTML = `${data.name}, ${data.sys.country}`;
